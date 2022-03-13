@@ -9,7 +9,6 @@ GENDER = [
 
 
 class User(AbstractUser):
-    email = models.EmailField(primary_key=True)
     is_student = models.BooleanField(default=False)
     is_landlord = models.BooleanField(default=False)
 
@@ -20,4 +19,7 @@ class StudentProfile(models.Model):
     last_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=1, choices=GENDER)
     cell = models.CharField(max_length=20)
-    level = models.IntegerField(max_length=10)
+    level = models.DecimalField(decimal_places=1, max_digits=3)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"

@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from .forms import StudentProfile
-from ..students.models import User
+from .models import User
+from core.models import Booking
 
 
 # Create your views here.
@@ -21,3 +22,9 @@ class StudentSignUpView(CreateView):
         user = form.save()
         login(self.request, user)
         return redirect('#url of homepage')
+
+
+class StudentBookingsListView(ListView):
+    template_name = ''
+    queryset = Booking.objects.filter()
+    context_object_name = 'booking'

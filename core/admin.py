@@ -1,11 +1,11 @@
 from django.contrib import admin
-from models import Booking, House
+from .models import Booking, House
 # Register your models here.
 
 
 class HouseAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': 'address'}
+    prepopulated_fields = {'slug': ['address']}
 
 
-admin.register(House, HouseAdmin)
-admin.register(Booking)
+admin.site.register(House, HouseAdmin)
+admin.site.register(Booking)

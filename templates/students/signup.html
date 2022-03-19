@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<div class="breadcrumb-wrapper">
+<h2 class="product-title">Join Us</h2>
+<ol class="breadcrumb">
+<li><a href="#">Home /</a></li>
+<li class="current">Register</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<section class="register section-padding">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-5 col-md-12 col-xs-12">
+<div class="register-form login-area">
+<h3>
+Student Registration
+</h3>
+<form class="login-form" method="post">
+    {% csrf_token %}
+{{ profile_form|crispy }}
+    {{ form|crispy }}
+    {% comment %}
+<div class="form-group">
+<div class="input-icon">
+
+        {{form.username.label_tag}}
+    {{form.username}}
+</div>
+</div>
+<div class="form-group">
+<div class="input-icon">
+{{profile_form.first_name.label_tag}}
+{{profile_form.first_name}}
+</div>
+</div>
+<div class="form-group">
+<div class="input-icon">
+    {{profile_form.last_name.label_tag}}
+{{profile_form.last_name}}
+</div>
+</div>
+<div class="form-group">
+<div class="input-icon">
+    {{profile_form.gender.label_tag}}
+{{profile_form.gender}}
+</div>
+</div>
+    <div class="form-group">
+<div class="input-icon">
+{{form.email.label_tag}}
+    {{form.email}}
+</div>
+</div>
+    <div class="form-group">
+<div class="input-icon">
+{{profile_form.cell.label_tag}}
+{{profile_form.cell}}
+</div>
+</div>
+<div class="form-group">
+<div class="input-icon">
+<i class="input-icon"></i>
+{{profile_form.level.label_tag}}
+{{profile_form.level}}
+</div>
+</div>
+<div class="form-group">
+<div class="input-icon">
+{{form.password1.errors}}
+{{form.password1.label_tag}}
+{{form.password1}}
+</div>
+</div>
+<div class="form-group">
+<div class="input-icon">
+{{form.password2.errors}}
+{{form.password2.label_tag}}
+{{form.password2}}
+</div>
+</div>
+    {% endcomment %}
+<div class="form-group mb-3">
+</div>
+<div class="text-center">
+<button class="btn btn-common log-btn">Register</button>
+</div>
+ {{form.non_field_errors}}
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+{% endblock content %}

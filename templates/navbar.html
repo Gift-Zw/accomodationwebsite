@@ -21,8 +21,8 @@
 <a class="google" href="#"><i class="lni-google-plus"></i></a>
 </div>
 <div class="header-top-right float-right">
-<a href="login.html" class="header-top-button"><i class="lni-lock"></i> Log In</a> |
-<a href="register.html" class="header-top-button"><i class="lni-pencil"></i> Register</a>
+<a href="/accounts/login" class="header-top-button"><i class="lni-lock"></i> Log In</a> |
+<a href="{% url 'students-signup' %}" class="header-top-button"><i class="lni-pencil"></i> Register</a>
 </div>
 </div>
 </div>
@@ -45,26 +45,28 @@
 <div class="collapse navbar-collapse" id="main-navbar">
 <ul class="navbar-nav mr-auto w-100 justify-content-center">
 <li class="nav-item dropdown active">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<a class="nav-link dropdown-toggle" href="{% url 'core:home' %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Home
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="category.html">
+<a class="nav-link" href="{% url 'core:house-list' %}">
 Listings
 </a>
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="#" >
+<a class="nav-link" href="{% url 'core:contact' %}" >
 Contact
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<a class="nav-link" href="{% url 'students:student-bookings' %}" >
 My Bookings
 </a>
 </li>
+
+
 
 </ul>
 <div class="post-btn">
@@ -75,24 +77,27 @@ My Bookings
 
 <ul class="mobile-menu">
 <li>
-<a class="active" href="#">
+<a class="active" href="{% url 'core:home' %}">
 Home
 </a>
 </li>
 <li>
-<a href="category.html">Listings</a>
+<a href="{% url 'core:house-list' %}">Listings</a>
 </li>
 <li>
-<a href="#">
+<a href="{% url 'core:contact' %}">
 Contact
 </a>
 </li>
 <li>
 <a href="#">Account</a>
 <ul class="dropdown">
-<li><a href="about.html">Log Out</a></li>
-<li><a href="services.html">My Bookings</a></li>
-<li><a href="ads-details.html">Sign Up</a></li>
+    {% if request.user.is_authenticated %}
+<li><a href="#">Log Out</a></li>
+<li><a href="{% url 'students:student-bookings' %}">My Bookings</a></li>
+    {% else %}
+    <li><a href="{% url 'students-signup' %}">Sign Up</a></li>
+    {% endif %}
 </ul>
 </li>
 </ul>

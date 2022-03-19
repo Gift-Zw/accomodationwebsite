@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'core',
     'landlords',
     'students',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +120,7 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = 'students.User'
+LOGIN_REDIRECT_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

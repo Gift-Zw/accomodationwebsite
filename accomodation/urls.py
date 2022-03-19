@@ -17,17 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from students.views import StudentSignUpView
+from students.views import  register_page
 from landlords.views import LandlordSignUpView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls', namespace='core')),
-    path('student/', include('core.urls', namespace='students')),
-    path('landlord/', include('core.urls', namespace='landlords')),
+    path('student/', include('students.urls', namespace='students')),
+    path('landlord/', include('landlords.urls', namespace='landlords')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/student/', StudentSignUpView.as_view(), name='students-signup'),
-    path('accounts/signup/landlord/', LandlordSignUpView.as_view(), name='landlord-signup')
+    path('accounts/student/signup/', register_page, name='students-signup'),
+    path('accounts/landlord/signup/', LandlordSignUpView.as_view(), name='landlord-signup')
 ]
 
 if settings.DEBUG:

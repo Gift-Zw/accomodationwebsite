@@ -12,7 +12,7 @@ from core.models import Booking
 class StudentSignUpView(CreateView):
     model = User
     form_class = StudentProfile
-    template_name = ''
+    template_name = 'signup.html'
 
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'student'
@@ -21,7 +21,7 @@ class StudentSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('#url of homepage')
+        return redirect('/')
 
 
 class StudentBookingsListView(ListView):

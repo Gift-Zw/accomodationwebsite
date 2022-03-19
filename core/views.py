@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
-from models import House
+from .models import House
 
 
 # Create your views here.
 
 
 class HouseListView(ListView):
-    template_name = ''
+    template_name = 'houselist.html'
     queryset = House.objects.all()
     context_object_name = 'books'
     paginate_by = 8
@@ -18,7 +18,12 @@ class HouseListView(ListView):
     """
 
 
-class HouseDetailView(DetailView):
+class HouseDetailView(ListView):
     model = House
-    template_name = ''
+    template_name = 'housedetail.html'
 
+
+class HomeView(ListView):
+    template_name = 'home.html'
+    queryset = House.objects.all()
+    context_object_name = 'house'

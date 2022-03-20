@@ -9,6 +9,17 @@ GENDER = [
     ('Both', 'Both')
 ]
 
+LOCATIONS = [
+    ('Selborne Park 1', 'Selborne Park 1'),
+    ('Selborne Park 2', 'Selborne Park 2'),
+    ('Parklands', 'Parklands'),
+    ('Khumalo', 'Khumalo'),
+    ('Riverside', 'Riverside'),
+    ('Sunminghill', 'Sunminghill'),
+    ('Woodlands', 'Woodlands'),
+    ('Matsheomuhlope', 'Matsheomuhlope')
+
+]
 
 def directory_path_house(instance, filename, *args):
     # file will be uploaded to MEDIA_ROOT/houses/<landlord>/<address>
@@ -18,7 +29,7 @@ def directory_path_house(instance, filename, *args):
 class House(models.Model):
     landlord = models.ForeignKey(LandlordProfile, on_delete=models.CASCADE)
     address = models.CharField(max_length=100, primary_key=True)
-    area = models.CharField(max_length=100)
+    location = models.CharField(max_length=100, choices=LOCATIONS)
     rent = models.IntegerField()
     gender_required = models.CharField(max_length=30, choices=GENDER)
     distance_from_campus = models.DecimalField(decimal_places=1, max_digits=6)

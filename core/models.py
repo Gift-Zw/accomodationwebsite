@@ -65,7 +65,7 @@ class Booking(models.Model):
     id = models.AutoField(primary_key=True)
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student')
     house = models.ForeignKey(House, on_delete=models.CASCADE, default='Me')
-    landlord = models.ForeignKey(User, on_delete=models.CASCADE, related_name='landlord')
+    landlord = models.ForeignKey(User, on_delete=models.CASCADE, related_name='landlord', default='me')
     duration = models.CharField(max_length=100)
     has_payed = models.BooleanField(default=False)
     date = models.DateField(auto_now=True)

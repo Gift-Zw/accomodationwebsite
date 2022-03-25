@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import LandlordPortalView, confirm_payment
+from .views import landlord_dash, confirm_payment
 app_name = 'landlords'
 
 urlpatterns = [
-    path('bookings/', LandlordPortalView.as_view(), name='bookings'),
-    path('confirm-payment/', confirm_payment, name='confirm-payment')
+    path('bookings/', landlord_dash, name='bookings'),
+    path('confirm-payment/<id>/', confirm_payment, name='confirm-payment'),
+
 ]

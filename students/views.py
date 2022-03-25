@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.views.generic import CreateView, ListView
 from .forms import StudentSignUpForm, CreateStudentForm, StudentProfileForm
@@ -39,6 +39,18 @@ def register_page(request):
 @method_decorator([login_required, student_required], name='dispatch')
 class StudentBookingsListView(ListView):
     template_name = 'students/dashboard.html'
-    queryset = Booking.objects.filter()
-    context_object_name = 'booking'
+    context_object_name = 'bookings'
 
+    def get_queryset(self):
+        self.user = get_object_or_404(User, name=self.kwargs['user'])
+        return Booking.objects.filter(user=self.user)
+
+
+@student_required
+def student_dash(request):
+    bookings = Booking.objects.filter(student=request.user)
+    context = {
+        'bookings':bookings,
+        'dash': 'active'
+    }
+    return render(request, template_name='students/dashboard.html', context=context)

@@ -75,7 +75,11 @@
 <div class="icon"><i class="lni-write"></i></div>
 <div class="contentbox">
 <h2><a href="#">Total Bookings </a></h2>
-<h3>10</h3>
+ {% if bookings|length > 0 %}
+<h3>{{ bookings|length }}</h3>
+ {% else %}
+ <h3>You have not made any bookings</h3>
+ {% endif %}
 </div>
 </div>
 </div>
@@ -100,6 +104,7 @@
 </tr>
 </thead>
 <tbody>
+{% for booking in bookings %}
 <tr data-category="active">
 <td>
 <div class="custom-control custom-checkbox">
@@ -107,24 +112,29 @@
 <label class="custom-control-label" for="adone"></label>
 </div>
 </td>
-<td class="photo"><img class="img-fluid" src="{% static 'assets/img/product/img1.jpg' %}" alt=""></td>
+<td class="photo"><img class="img-fluid" src="{{ booking.house.front_image.url }}" alt=""></td>
 <td data-title="Title">
-<h3>HP Laptop 6560b core i3 3nd generation</h3>
-<span>Ad ID: ng3D5hAMHPajQrM</span>
+<h3>{{ booking.house.address }}</h3>
+<span>{{ booking.date }}</span>
 </td>
-<td data-title="Category"><span class="adcategories">Laptops & PCs</span></td>
-<td data-title="Ad Status"><span class="adstatus adstatusactive">active</span></td>
+<td data-title="Category"><span class="adcategories">{{ booking.house.location }}</span></td>
+ {% if booking.has_payed %}
+<td data-title="Ad Status"><span class="adstatus adstatusactive">Place Secured</span></td>
+{% else %}
+<td data-title="Ad Status"><span class="adstatus adstatusexpired">Waiting</span></td>
+ {% endif %}
 <td data-title="Price">
-<h3>139$</h3>
+<h3>${{ booking.house.rent }}</h3>
 </td>
 <td data-title="Action">
 <div class="btns-actions">
-<a class="btn-action btn-view" href="#"><i class="lni-eye"></i></a>
-<a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
-<a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a>
+<a class="btn-action btn-view" href="{{ booking.house.get_absolute_url }}"><i class="lni-eye"></i></a>
+<a class="btn-action btn-delete" href="{{ booking.student_delete_booking }}"><i class="lni-trash"></i></a>
 </div>
 </td>
 </tr>
+{% endfor %}
+{% comment %}
 <tr data-category="sold">
 <td>
 <div class="custom-control custom-checkbox">
@@ -174,6 +184,7 @@
 </div>
 </td>
 </tr>
+{% endcomment %}
 </tbody>
 </table>
 </div>

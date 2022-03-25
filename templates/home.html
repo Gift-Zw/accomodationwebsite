@@ -8,22 +8,22 @@
 <div class="carousel-item active">
 <img class="d-block w-100" src="{% static 'assets/img/slider/slider-bg1.jpg' %}" alt="First slide">
 <div class="carousel-caption d-md-block">
-<h1 class="animated wow fadeInDown hero-heading" data-wow-delay=".4s">Welcome to The Largest Marketplace</h1>
-<p class="animated fadeInUp wow hero-sub-heading" data-wow-delay=".6s">Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
+<h1 class="animated wow fadeInDown hero-heading" data-wow-delay=".3s"><u>Where To Stay?????????</u></h1>
+<p class="animated fadeInUp wow hero-sub-heading" data-wow-delay=".14s">Frustrating question right!! Well where2stay provides you with the answer by connecting you to trusted and reliable landlords. </p>
 </div>
 </div>
 <div class="carousel-item">
 <img class="d-block w-100" src="{% static 'assets/img/slider/slider-bg2.jpg' %}" alt="Second slide">
 <div class="carousel-caption d-md-block">
-<h1 class="animated wow fadeInLeft hero-heading" data-wow-delay=".7s">Post Free Ads</h1>
-<p class="animated wow fadeInRight hero-sub-heading" data-wow-delay=".9s">Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
+<h1 class="animated wow fadeInLeft hero-heading" data-wow-delay=".7s">Think in other Terms</h1>
+<p class="animated wow fadeInRight hero-sub-heading" data-wow-delay=".9s">Stop getting scorched by the sun moving around looking for accommodation. Search for your ideal house to rent from the comfort of your home while drinking a glass of water.</p>
 </div>
 </div>
 <div class="carousel-item">
 <img class="d-block w-100" src="{% static 'assets/img/slider/slider-bg3.jpg' %}" alt="Third slide">
 <div class="carousel-caption d-md-block">
-<h1 class="animated wow fadeInDown hero-heading" data-wow-delay=".6s">Get More Sell and More Exposure</h1>
-<p class="animated fadeInUp wow hero-sub-heading" data-wow-delay=".8s">Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
+<h1 class="animated wow fadeInDown hero-heading" data-wow-delay=".6s"></h1>
+<p class="animated fadeInUp wow hero-sub-heading" data-wow-delay=".8s"></p>
 </div>
 </div>
 </div>
@@ -50,7 +50,7 @@
 <input type="text" name="customword" class="form-control" placeholder="What are you looking for?">
 </div>
 <div class="form-group inputwithicon">
-<i class="lni-target"></i>
+<i class="lni-map-marker"></i>
 <div class="select">
 <select>
 <option value="none">Locations</option>
@@ -75,8 +75,11 @@
 
 <section class="featured section-padding">
 <div class="container">
-<h1 class="section-title">Latest Products</h1>
+<h1 class="section-title">Latest Houses</h1>
+
 <div class="row">
+    {% for house in object_list %}
+    {% if forloop.counter < 4  %}
 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
 <div class="featured-box">
 <figure>
@@ -84,212 +87,32 @@
 <span class="bg-green"><i class="lni-heart"></i></span>
 <span><i class="lni-bookmark"></i></span>
 </div>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-1.jpg' %}" alt=""></a>
+<a href="{{ house.get_absolute_url }}"><img class="img-fluid" src="{{ house.front_image.url }}" alt=""></a>
 </figure>
 <div class="feature-content">
 <div class="product">
-<a href="#">Electronic > </a>
-<a href="#">Cameras</a>
+<a href="#">Required Gender : {{ house.gender_required }}</a>
 </div>
-<h4><a href="ads-details.html">Canon SX Powershot ...</a></h4>
+<h4><a href="{{ house.get_absolute_url }}">{{ house.address }}</a></h4>
 <div class="meta-tag">
 <span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
+<a href="#"><i class="lni-map-marker"></i>{{ house.location }}</a>
 </span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> New York, US</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Canon</a>
+ <span>
+<a href="#"><i class="lni-user"></i>{{ house.landlord.landlordprofile.last_name }}</a>
 </span>
 </div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
+<p class="dsc">There are {{ house.capacity }} vacant places available. The house is {{ house.distance_from_campus }}km away from campus.</p>
 <div class="listing-bottom">
-<h3 class="price float-left">$249.00</h3>
-<a href="ads-details.html" class="btn btn-common float-right">View Details</a>
+<h3 class="price float-left">${{ house.rent }}.00/month</h3>
+<a href="{{ house.get_absolute_url }}" class="btn btn-common float-right">View Details</a>
 </div>
 </div>
 </div>
 </div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
-<div class="featured-box">
-<figure>
-<span class="price-save">
-25% Save
-</span>
-<div class="icon">
-<span class="bg-green"><i class="lni-heart"></i></span>
-<span><i class="lni-bookmark"></i></span>
-</div>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-2.jpg' %}" alt=""></a>
-</figure>
-<div class="feature-content">
-<div class="product">
-<a href="#">Electronic > </a>
-<a href="#">Computers</a>
-</div>
-<h4><a href="ads-details.html">Apple Macbook Pro ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> Sara Doe</a>
-</span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> California, US</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Phones</a>
-</span>
-</div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-<div class="listing-bottom">
-<h3 class="price float-left">$289.00</h3>
-<a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
-<div class="featured-box">
-<figure>
-<div class="icon">
-<span class="bg-green"><i class="lni-heart"></i></span>
-<span><i class="lni-bookmark"></i></span>
-</div>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-3.jpg' %}" alt=""></a>
-</figure>
-<div class="feature-content">
-<div class="product">
-<a href="#">Vehicle > </a>
-<a href="#">Cars</a>
- </div>
-<h4><a href="ads-details.html">Mercedes Benz E200 ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> Rossi Josh</a>
-</span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> Washington, US</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Others</a>
-</span>
-</div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-<div class="listing-bottom">
-<h3 class="price float-left">$199.80</h3>
-<a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
-<div class="featured-box">
-<figure>
-<span class="price-save">
-10% Save
-</span>
-<div class="icon">
-<span class="bg-green"><i class="lni-heart"></i></span>
-<span><i class="lni-bookmark"></i></span>
-</div>
-<a href="#"><img class="img-fluid" src="{% static 'assets/img/featured/img-4.jpg' %}" alt=""></a>
-</figure>
-<div class="feature-content">
-<div class="product">
-<a href="#">Others > </a>
-<a href="#">Bags</a>
-</div>
-<h4><a href="ads-details.html">Brown Leather Bag ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> Maria Barlow</a>
-</span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> Chicago, US</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Gucci</a>
-</span>
-</div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-<div class="listing-bottom">
-<h3 class="price float-left">$206.90</h3>
-<a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
-<div class="featured-box">
-<figure>
-<div class="icon">
-<span class="bg-green"><i class="lni-heart"></i></span>
-<span><i class="lni-bookmark"></i></span>
-</div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img-5.jpg" alt=""></a>
-</figure>
-<div class="feature-content">
-<div class="product">
-<a href="#">Electronic > </a>
-<a href="#">Apple</a>
-</div>
-<h4><a href="ads-details.html">Iphonex 6 Plus Factor ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> David Givens</a>
-</span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> New York, US</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Apple</a>
-</span>
-</div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-<div class="listing-bottom">
-<h3 class="price float-left">$106.70</h3>
-<a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-</div>
-</div>
-</div>
-</div>
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
-<div class="featured-box">
-<figure>
-<span class="price-save">
-35% Save
-</span>
-<div class="icon">
-<span class="bg-green"><i class="lni-heart"></i></span>
-<span><i class="lni-bookmark"></i></span>
-</div>
-<a href="#"><img class="img-fluid" src="assets/img/featured/img-6.jpg" alt=""></a>
-</figure>
-<div class="feature-content">
-<div class="product">
-<a href="#">Furniture > </a>
-<a href="#">Home</a>
-</div>
-<h4><a href="ads-details.html">Wooden Dining Tabl ...</a></h4>
-<div class="meta-tag">
-<span>
-<a href="#"><i class="lni-user"></i> John Smith</a>
-</span>
-<span>
-<a href="#"><i class="lni-map-marker"></i> New York, US</a>
-</span>
-<span>
-<a href="#"><i class="lni-tag"></i> Apple</a>
-</span>
-</div>
-<p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-<div class="listing-bottom">
-<h3 class="price float-left">$120.00</h3>
-<a href="ads-details.html" class="btn btn-common float-right">View Details</a>
-</div>
-</div>
-</div>
-</div>
+
+    {% endif %}
+     {% endfor %}
 </div>
 </div>
 </section>
@@ -315,7 +138,7 @@
 <div class="icon-box">
 <i class="lni-bookmark-alt"></i>
 </div>
-<p>Post Free Ad</p>
+<p>Browse and Book House</p>
 </div>
 </div>
 <div class="col-lg-4 col-md-4 col-xs-12">
@@ -323,62 +146,13 @@
 <div class="icon-box">
 <i class="lni-thumbs-up"></i>
 </div>
-<p>Deal Done</p>
+<p>Contact Landlord & Make Payment</p>
 </div>
 </div>
 <hr class="works-line">
 </div>
 </div>
 </section>
-
-
-<div class="call-back section-padding bg-light">
-<div class="container">
-<h4>Request a Free Call Back</h4>
-<div class="row">
-<div class="col-lg-8 col-md-6 col-xs-12">
-<div class="row">
-<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-<div class="form-group has-error">
-<input type="text" class="form-control" id="name" name="name" placeholder="Name">
-</div>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-<div class="form-group has-error">
-<input type="email" class="form-control" placeholder="catagory">
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-<div class="form-group has-error">
-<input type="text" class="form-control" id="phone" name="name" placeholder="Phone">
-</div>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-<div class="form-group has-error">
-<input type="email" class="form-control" id="email" placeholder="Email">
-</div>
-</div>
-</div>
-<a href="#" class="btn btn-common">Send</a>
-</div>
-<div class="col-lg-4 col-md-6 col-xs-12">
-<div class="call-us">
-<div class="icon">
-<i class="lni-phone"></i>
-</div>
-<div class="contact-text">
-<span>Get Free Update</span>
-<h5 class="phone-num">+1537 555 44 88</h5>
-<p>Monday - Saturday / 9:00 - 8:00</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
 
 <section class="services section-padding">
 <div class="container">
@@ -394,7 +168,7 @@
 </div>
 <div class="services-content">
 <h3><a href="#">Elegant Design</a></h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis.</p>
+<p>Our platform is stylish in a graceful and unique way</p>
 </div>
 </div>
 </div>
@@ -402,11 +176,11 @@
 <div class="col-md-6 col-lg-4 col-xs-12">
 <div class="services-item wow fadeInRight" data-wow-delay="0.4s">
 <div class="icon">
-<i class="lni-display"></i>
+<i class="lni-check-mark-circle"></i>
 </div>
 <div class="services-content">
-<h3><a href="#">Responsive Design</a></h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis.</p>
+<h3><a href="#">Verified Landlords</a></h3>
+<p>We verify landlords to protect students from scammers.</p>
 </div>
 </div>
 </div>
@@ -414,11 +188,11 @@
 <div class="col-md-6 col-lg-4 col-xs-12">
 <div class="services-item wow fadeInRight" data-wow-delay="0.6s">
 <div class="icon">
-<i class="lni-color-pallet"></i>
+<i class="lni-support"></i>
 </div>
 <div class="services-content">
-<h3><a href="#">Clean UI</a></h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis.</p>
+<h3><a href="#">Student Support</a></h3>
+<p>We 24 hour help and supports to our users.</p>
 </div>
 </div>
 </div>
@@ -426,11 +200,11 @@
 <div class="col-md-6 col-lg-4 col-xs-12">
 <div class="services-item wow fadeInRight" data-wow-delay="0.8s">
 <div class="icon">
-<i class="lni-emoji-smile"></i>
+<i class="lni-lock"></i>
 </div>
 <div class="services-content">
-<h3><a href="#">UX Friendly</a></h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis.</p>
+<h3><a href="#">Security</a></h3>
+<p>Our platform is secure and ensures confidentiality to our user's data.</p>
 </div>
 </div>
 </div>
@@ -438,11 +212,11 @@
 <div class="col-md-6 col-lg-4 col-xs-12">
 <div class="services-item wow fadeInRight" data-wow-delay="1s">
 <div class="icon">
-<i class="lni-pencil-alt"></i>
+<i class="lni-thumbs-up"></i>
 </div>
 <div class="services-content">
-<h3><a href="#">Easily Customizable</a></h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis.</p>
+<h3><a href="#">SRC Backing</a></h3>
+<p>Our platform has full support from the Students Representative Council.</p>
 </div>
 </div>
 </div>
@@ -450,11 +224,11 @@
 <div class="col-md-6 col-lg-4 col-xs-12">
 <div class="services-item wow fadeInRight" data-wow-delay="1.2s">
 <div class="icon">
-<i class="lni-headphone-alt"></i>
+<i class="lni-stats-up"></i>
 </div>
 <div class="services-content">
-<h3><a href="#">Security Support</a></h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo aut magni perferendis.</p>
+<h3><a href="#">Advertisement</a></h3>
+<p>Local businesses can advertise their products through our platform.</p>
 </div>
 </div>
 </div>
@@ -472,19 +246,18 @@
 <div class="col-lg-4 col-md-6 col-xs-12">
 <div class="table">
 <div class="icon">
-<i class="lni-gift"></i>
+<i class="lni-star-empty"></i>
 </div>
 <div class="pricing-header">
-<p class="price-value">$29</p>
+<p class="price-value">$2</p>
  </div>
 <div class="title">
 <h3>Basic</h3>
 </div>
 <ul class="description">
-<li>Free ad posting</li>
-<li>No Featured ads availability</li>
-<li>Access to limited features</li>
-<li>For 30 days</li>
+<li>Maximum 3 house bookings.</li>
+<li>Access to limited houses</li>
+<li>For 1 semester</li>
 <li>100% Secure!</li>
 </ul>
 <button class="btn btn-common">Purchase</button>
@@ -493,19 +266,18 @@
 <div class="col-lg-4 col-md-6 col-xs-12">
 <div class="table" id="active-tb">
 <div class="icon">
-<i class="lni-leaf"></i>
+<i class="lni-star"></i>
 </div>
 <div class="pricing-header">
-<p class="price-value">$49</p>
+<p class="price-value">$3</p>
 </div>
 <div class="title">
 <h3>Standard</h3>
 </div>
 <ul class="description">
-<li>Free ad posting</li>
-<li>10 Featured ads availability</li>
-<li>Access to unlimited features</li>
-<li>For 30 days</li>
+<li>Maximum 7 house bookings.</li>
+<li>Access to unlimited houses</li>
+<li>For 1 year</li>
 <li>100% Secure!</li>
 </ul>
 <button class="btn btn-common">Purchase</button>
@@ -514,19 +286,18 @@
 <div class="col-lg-4 col-md-6 col-xs-12">
 <div class="table">
 <div class="icon">
-<i class="lni-layers"></i>
+<i class="lni-star-filled"></i>
 </div>
 <div class="pricing-header">
-<p class="price-value">$69</p>
+<p class="price-value">$5</p>
 </div>
 <div class="title">
 <h3>Premium</h3>
 </div>
 <ul class="description">
-<li>Free ad posting</li>
-<li>100 Featured ads availability</li>
-<li>Access to unlimited features</li>
-<li>For 30 days</li>
+<li>Unlimited house bookings.</li>
+<li>Access to unlimited houses</li>
+<li>Valid till graduation</li>
 <li>100% Secure!</li>
 </ul>
 <button class="btn btn-common">Purchase</button>
@@ -543,32 +314,32 @@
 
 <div class="col-md-3 col-sm-6 work-counter-widget">
 <div class="counter">
-<div class="icon"><i class="lni-layers"></i></div>
-<h2 class="counterUp">8325</h2>
-<p>Ad Posted</p>
+<div class="icon"><i class="lni-home"></i></div>
+<h2 class="counterUp">45</h2>
+<p>Houses Posted</p>
 </div>
 </div>
 
 <div class="col-md-3 col-sm-6 work-counter-widget">
 <div class="counter">
 <div class="icon"><i class="lni-users"></i></div>
-<h2 class="counterUp">5487</h2>
+<h2 class="counterUp">64</h2>
 <p>Members</p>
 </div>
 </div>
 
 <div class="col-md-3 col-sm-6 work-counter-widget">
 <div class="counter">
-<div class="icon"><i class="lni-briefcase"></i></div>
-<h2 class="counterUp">2012</h2>
-<p>Premium Ads</p>
+<div class="icon"><i class="lni-database"></i></div>
+<h2 class="counterUp">130</h2>
+<p>Bookings</p>
 </div>
 </div>
 
 <div class="col-md-3 col-sm-6 work-counter-widget">
 <div class="counter">
 <div class="icon"><i class="lni-map"></i></div>
-<h2 class="counterUp">200</h2>
+<h2 class="counterUp">8</h2>
 <p>Locations</p>
 </div>
 </div>
@@ -576,7 +347,7 @@
 </div>
 </section>
 
-
+{% comment %}
 <section class="testimonial section-padding">
 <div class="container">
 <div class="row">
@@ -665,7 +436,7 @@
 </div>
 </div>
 </section>
-
+{% endcomment %}
 
 <section class="subscribes section-padding">
 <div class="container">

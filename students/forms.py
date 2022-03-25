@@ -41,22 +41,4 @@ class StudentProfileForm(forms.ModelForm):
             "level": "Level"
         }
 
-""""
-    @transaction.atomic
-    def save(self):
-        user = super().save(commit=False)
-        user.is_student = True
-        user.save()
-        student = StudentProfile.objects.create(
-            user=user,
-            first_name=self.cleaned_data.get('first_name'),
-            last_name=self.cleaned_data.get('last_name'),
-            gender=self.cleaned_data.get('gender'),
-            cell=self.cleaned_data.get('cell'),
-            level=self.cleaned_data.get('level')
-                                                )
-        student.save()
-        return user
-"""
-
 

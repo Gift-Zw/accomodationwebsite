@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from students.views import  register_page
-from landlords.views import LandlordSignUpView
+from students.views import register_page
+from landlords.views import landlord_register_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +27,7 @@ urlpatterns = [
     path('landlord/', include('landlords.urls', namespace='landlords')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/student/signup/', register_page, name='students-signup'),
-    path('accounts/landlord/signup/', LandlordSignUpView.as_view(), name='landlord-signup')
+    path('accounts/landlord/signup/', landlord_register_page, name='landlord-signup')
 ]
 
 if settings.DEBUG:

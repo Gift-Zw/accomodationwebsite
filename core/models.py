@@ -27,7 +27,7 @@ def directory_path_house(instance, filename, *args):
 
 
 class House(models.Model):
-    landlord = models.ForeignKey(LandlordProfile, on_delete=models.CASCADE)
+    landlord = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=100, primary_key=True)
     location = models.CharField(max_length=100, choices=LOCATIONS)
     rent = models.IntegerField()
@@ -46,30 +46,46 @@ class House(models.Model):
         return self.address
 
     def get_absolute_url(self):
-        return reverse('core:#name of view', kwargs={
+        return reverse('core:house-detail', kwargs={
             'slug': self.slug
         })
 
     def get_book_house(self):
-        return reverse('core:#name of view', kwargs={
+        return reverse('core:book-house', kwargs={
             'slug': self.slug
         })
 
     def get_remove_booking(self):
-        return reverse('core:#name of view', kwargs={
+        return reverse('core:house-detail', kwargs={
             'slug': self.slug
         })
 
 
 class Booking(models.Model):
-    student = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='student')
     house = models.ForeignKey(House, on_delete=models.CASCADE)
+    landlord = models.ForeignKey(User, on_delete=models.CASCADE, related_name='landlord')
     duration = models.CharField(max_length=100)
     has_payed = models.BooleanField(default=False)
+    date = models.DateField(auto_now=True)
 
     def confirm_payment(self):
-        self.has_payed = True
+        return reverse('landlords:confirm-payment', kwargs={
+            'id': self.id,
+        })
+
+    def landlord_delete_booking(self):
+        return reverse('core:landlord-delete-booking', kwargs={
+            'id': self.id,
+
+        })
+
+    def student_delete_booking(self):
+        return reverse('core:student-delete-booking', kwargs={
+            'id': self.id,
+        })
 
     def __str__(self):
-        return f"{self.student.first_name} {self.student.last_name} has booked {self.house.address} for {self.duration}"
+        return f"{self.student.studentprofile.first_name} {self.student.studentprofile.last_name} has booked {self.house.address} for {self.duration}"
 

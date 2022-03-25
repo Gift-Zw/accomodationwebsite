@@ -21,7 +21,7 @@ class StudentProfile(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=10, choices=GENDER)
-    cell = models.CharField(max_lengcth=20)
+    cell = models.CharField(max_length=20)
     level = models.DecimalField(decimal_places=1, max_digits=3)
 
     def __str__(self):

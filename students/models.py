@@ -13,9 +13,7 @@ GENDER = [
 class User(AbstractUser):
     is_student = models.BooleanField(default=False)
     is_landlord = models.BooleanField(default=False)
-    is_basic = models.BooleanField(default=False)
-    is_standard = models.BooleanField(default=False)
-    is_premium = models.BooleanField(default=False)
+
 
 
 class StudentProfile(models.Model):

@@ -29,7 +29,7 @@ def directory_path_house(instance, filename, *args):
 class House(models.Model):
     landlord = models.ForeignKey(User, on_delete=models.CASCADE, default='ME')
     address = models.CharField(max_length=100, primary_key=True)
-    location = models.CharField(max_length=100, choices=LOCATIONS)
+    location = models.CharField(max_length=100, choices=LOCATIONS, default='me')
     rent = models.IntegerField()
     gender_required = models.CharField(max_length=30, choices=GENDER)
     distance_from_campus = models.DecimalField(decimal_places=1, max_digits=6)

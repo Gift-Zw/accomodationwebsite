@@ -21,6 +21,7 @@ LOCATIONS = [
 
 ]
 
+
 def directory_path_house(instance, filename, *args):
     # file will be uploaded to MEDIA_ROOT/houses/<landlord>/<address>
     return 'houses/{0}/{1}/{2}'.format(instance.landlord.last_name, instance.address, filename)
@@ -28,7 +29,7 @@ def directory_path_house(instance, filename, *args):
 
 class House(models.Model):
     landlord = models.ForeignKey(User, on_delete=models.CASCADE, default='ME')
-    address = models.CharField(max_length=100, primary_key=True)
+    address = models.CharField(max_length=100)
     location = models.CharField(max_length=100, choices=LOCATIONS, default='me')
     rent = models.IntegerField()
     gender_required = models.CharField(max_length=30, choices=GENDER)

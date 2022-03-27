@@ -15,7 +15,6 @@ class User(AbstractUser):
     is_landlord = models.BooleanField(default=False)
 
 
-
 class StudentProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=100)
